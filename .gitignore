@@ -1,0 +1,45 @@
+# Build outputs
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+
+# Rider IDE files
+.idea/
+
+# OS-generated files
+*.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Database files (local)
+*.mdf
+*.ldf
+*.sqlite
+*.db
+
+# NuGet packages
+*.nupkg
+packages/
+.nuget/
+
+# Local appsettings (if contains secrets)
+appsettings.Development.json
+appsettings.Local.json
+
+# Exclude node_modules if you have frontend code
+node_modules/
+
+# Keep project files
+# Properties folder is needed
+# Program.cs, *.csproj, *.sln should be included
+
+# Optional: publish output
+publish/
