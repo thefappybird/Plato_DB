@@ -13,6 +13,14 @@ using Plato_DB.Services.RecipeService;
 using Scalar.AspNetCore;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
+var frontendOrigins = new[]
+{
+    "http://localhost:5173", // for local dev
+    "https://03-recipe-planner.vercel.app",
+    "https://03-recipe-planner-thefappybirds-projects.vercel.app",
+    "https://03-recipe-planner-git-main-thefappybirds-projects.vercel.app",
+    "https://03-recipe-planner-4udcazla4-thefappybirds-projects.vercel.app"
+};
 
 // Add services to the container.
 
@@ -58,12 +66,15 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IRecipeService, RecipeService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddScoped<IRatingService, RatingService>();
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll",
-        policy => policy.AllowAnyOrigin()
-                        .AllowAnyHeader()
-                        .AllowAnyMethod());
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins(frontendOrigins)
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
 });
 
 var app = builder.Build();
@@ -75,7 +86,7 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
 }
 
-app.UseCors("AllowAll");
+app.UseCors("AllowFrontend");
 
 app.UseHttpsRedirection();
 
