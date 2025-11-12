@@ -61,7 +61,7 @@ builder.Services.AddScoped<IRatingService, RatingService>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",
-        policy => policy.WithOrigins("http://localhost:5173")
+        policy => policy.WithOrigins("AllowAll")
                         .AllowAnyHeader()
                         .AllowAnyMethod());
 });
