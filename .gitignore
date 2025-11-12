@@ -31,8 +31,7 @@ packages/
 .nuget/
 
 # Local appsettings (if contains secrets)
-appsettings.Development.json
-appsettings.Local.json
+*.json
 
 # Exclude node_modules if you have frontend code
 node_modules/
@@ -43,3 +42,5 @@ node_modules/
 
 # Optional: publish output
 publish/
+
+.fake
